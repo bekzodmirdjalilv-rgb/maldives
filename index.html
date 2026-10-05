@@ -4,777 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visit Maldives | Official Tourism & Travel Guide</title>
-    <!-- Иконки FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #030a16;
-            color: #00f2fe
-            overflow-x: hidden;
-            transition: background-color 0.4s ease, color 0.4s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f9f9;
+            color: #333;
         }
 
-        /* НАВИГАЦИЯ */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(3, 10, 22, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.4s;
-        }
-
-        .navbar {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand-logo {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: 3px;
-            background: linear-gradient(45deg, #00f2fe, #4facfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-        .nav-link {
-            color: #e0e0e0;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #00f2fe;
-        }
-
-        /* КНОПКА ТЕМЫ */
-        .theme-toggle-btn {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
             color: #fff;
-            padding: 8px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-
-        .theme-toggle-btn:hover {
-            border-color: #00f2fe;
-            color: #00f2fe;
-        }
-
-        /* ГЛАВНЫЙ ЭКРАН */
-        .hero {
-            height: 100vh;
-            width: 100%;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             text-align: center;
+            padding: 80px 20px;
         }
 
-        .bg-image, .water-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop') no-repeat center center/cover;
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
         }
 
-        .bg-image { z-index: 1; }
-        
-        .water-layer {
-            filter: url(#waterFilter);
-            z-index: 2;
-            pointer-events: none;
-            clip-path: circle(0px at 0px 0px);
-            transition: clip-path 0.03s ease-out;
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(3,10,22,0.8) 100%);
-            z-index: 3;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            max-width: 900px;
-            padding: 0 20px;
-        }
-
-        .hero-tag {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: #00f2fe;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .hero h1 {
-            font-size: 72px;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            color: #fff;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: #dcdcdc;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        /* ЖИВАЯ ИНФОРМАЦИЯ */
-        .live-stats {
-            padding: 60px 40px;
-            background: #061328;
-            transition: 0.4s;
-        }
-
-        .stats-grid {
-            max-width: 1400px;
+        .container {
+            max-width: 1100px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            padding: 20px;
         }
 
-        .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: 0.4s;
-        }
-
-        .stat-icon {
-            font-size: 32px;
-            color: #00f2fe;
-        }
-
-        .stat-info h4 {
-            font-size: 12px;
-            color: #888;
-            text-transform: uppercase;
-        }
-
-        .stat-info .val {
-            font-size: 20px;
-            font-weight: 800;
-            color: #fff;
-            margin-top: 3px;
-        }
-
-        /* СЕКЦИИ ОБЩИЕ СТИЛИ */
-        .section {
-            padding: 100px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header span {
-            color: #00f2fe;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .section-header h2 {
-            font-size: 42px;
-            margin-top: 10px;
-            font-weight: 800;
-        }
-
-        /* ЕДА И РЕСТОРАНЫ */
-        .food-grid {
+        .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
+            gap: 20px;
+            margin-top: 20px;
         }
 
-        .food-card {
-            background: #061328;
-            border-radius: 20px;
+        .card {
+            background: #fff;
+            border-radius: 12px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: 0.4s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.2s ease;
         }
 
-        .food-card img {
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
 
-        .food-card-body {
+        .card-content {
             padding: 20px;
         }
 
-        .food-card-body h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #00f2fe;
-        }
-
-        .food-card-body p {
-            color: #aaa;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .restaurants-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .rest-card {
-            position: relative;
-            height: 350px;
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .rest-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.5s;
-        }
-
-        .rest-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .rest-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 25px;
-            background: linear-gradient(to top, rgba(3,10,22,0.95), transparent);
-        }
-
-        .rest-content h3 {
-            font-size: 22px;
-            margin-bottom: 5px;
-            color: #fff;
-        }
-
-        .rest-content span {
-            color: #00f2fe;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        /* ПОПУЛЯРНЫЕ ОТЕЛИ */
-        .resort-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .resort-card {
-            background: #061328;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-            transition: 0.4s;
-        }
-
-        .resort-card:hover {
-            transform: translateY(-10px);
-            border-color: #00f2fe;
-        }
-
-        .resort-img {
-            height: 220px;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .resort-body {
-            padding: 25px;
-        }
-
-        .resort-tag {
-            background: rgba(0, 242, 254, 0.1);
-            color: #00f2fe;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            display: inline-block;
+        .card-content h3 {
+            color: #0077b6;
             margin-bottom: 10px;
         }
 
-        .resort-price {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .price-val {
-            font-size: 20px;
-            font-weight: 800;
-            color: #00f2fe;
-        }
-
-        /* КУДА ПОЕХАТЬ */
-        .travel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .travel-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 30px;
-            transition: 0.4s;
-        }
-
-        .travel-card:hover {
-            border-color: #00f2fe;
-        }
-
-        .travel-card i {
-            font-size: 36px;
-            color: #00f2fe;
-            margin-bottom: 20px;
-        }
-
-        .travel-card h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-
-        .travel-card p {
-            color: #aaa;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* ПОДВАЛ */
         footer {
-            background: #01050d;
-            padding: 60px 40px 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
             text-align: center;
-            color: #777;
-            transition: 0.4s;
+            padding: 20px;
+            background-color: #0077b6;
+            color: #fff;
+            margin-top: 40px;
         }
 
-        /* ==========================================
-           СТИЛИ ДЛЯ СВЕТЛОЙ ТЕМЫ (LIGHT MODE)
-        ========================================== */
-        body.light-theme {
-            background-color: #f4f7f9;
-            color: #1a1a1a;
-        }
-
-        body.light-theme header {
-            background: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        body.light-theme .nav-link {
-            color: #333;
-        }
-
-        body.light-theme .theme-toggle-btn {
-            border-color: rgba(0, 0, 0, 0.2);
-            color: #333;
-        }
-
-        body.light-theme .theme-toggle-btn:hover {
-            border-color: #00b4d8;
-            color: #00b4d8;
-        }
-
-        body.light-theme .live-stats {
-            background: #ffffff;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        body.light-theme .stat-card,
-        body.light-theme .food-card,
-        body.light-theme .resort-card,
-        body.light-theme .travel-card {
-            background: #ffffff;
-            border-color: rgba(0, 0, 0, 0.08);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-        }
-
-        body.light-theme .stat-info h4 {
-            color: #777;
-        }
-
-        body.light-theme .stat-info .val {
-            color: #111;
-        }
-
-        body.light-theme .food-card-body p,
-        body.light-theme .resort-body p,
-        body.light-theme .travel-card p {
-            color: #555;
-        }
-
-        body.light-theme footer {
-            background: #e9ecef;
-            color: #555;
-            border-top-color: rgba(0, 0, 0, 0.08);
+        /* Адаптация для небольших экранов (смартфонов) */
+        @media (max-width: 600px) {
+            header {
+                padding: 50px 15px;
+            }
+            header h1 {
+                font-size: 1.6rem;
+            }
+            header p {
+                font-size: 0.95rem;
+            }
+            .container {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Навигация -->
     <header>
-        <div class="navbar">
-            <a href="#" class="brand-logo">VISIT MALDIVES</a>
-            <div class="nav-right">
-                <ul class="nav-menu">
-                    <li><a href="#about" class="nav-link">Инфо</a></li>
-                    <li><a href="#food" class="nav-link">Покушать</a></li>
-                    <li><a href="#hotels" class="nav-link">Отели</a></li>
-                    <li><a href="#destinations" class="nav-link">Куда поехать</a></li>
-                </ul>
-                <button class="theme-toggle-btn" id="themeToggle">
-                    <i class="fa-solid fa-moon"></i> Тёмная
-                </button>
-            </div>
-        </div>
+        <h1>Visit Maldives</h1>
+        <p>Official Tourism & Travel Guide</p>
     </header>
 
-    <!-- Главный экран -->
-    <div class="hero">
-        <div class="bg-image"></div>
-        <div class="water-layer" id="waterLayer"></div>
-        <div class="hero-overlay"></div>
+    <div class="container">
+        <h2 style="text-align: center; color: #023e8a; margin-top: 10px;">Популярные направления</h2>
+        
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=600&q=80" alt="Пляж">
+                <div class="card-content">
+                    <h3>Белоснежные пляжи</h3>
+                    <p>Откройте для себя лучшие курорты с прозрачной водой и идеальным песком.</p>
+                </div>
+            </div>
 
-        <div class="hero-content">
-            <div class="hero-tag">Официальный Путеводитель</div>
-            <h1>Always Natural.<br>Always Maldives.</h1>
-            <p>Исследуйте лучшие рестораны, подводные виллы и райские места для отдыха.</p>
-        </div>
-    </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=600&q=80" alt="Дайвинг">
+                <div class="card-content">
+                    <h3>Подводный мир</h3>
+                    <p>Дайвинг и снорклинг среди коралловых рифов и морских обитателей.</p>
+                </div>
+            </div>
 
-    <!-- Статистика -->
-    <div class="live-stats" id="about">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <i class="fa-solid fa-clock stat-icon"></i>
-                <div class="stat-info">
-                    <h4>Время в Мале</h4>
-                    <div class="val" id="maldivesTime">--:--</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <i class="fa-solid fa-sun stat-icon"></i>
-                <div class="stat-info">
-                    <h4>Погода</h4>
-                    <div class="val">+30°C Солнечно</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <i class="fa-solid fa-water stat-icon"></i>
-                <div class="stat-info">
-                    <h4>Вода</h4>
-                    <div class="val">+28°C</div>
-                </div>
-            </div>
-            <div class="stat-card">
-                <i class="fa-solid fa-utensils stat-icon"></i>
-                <div class="stat-info">
-                    <h4>Кухня</h4>
-                    <div class="val">Морепродукты</div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" alt="Отель">
+                <div class="card-content">
+                    <h3>Роскошные виллы</h3>
+                    <p>Проживание в виллах прямо над водой с невероятным видом на океан.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Вкладка: Где покушать и Рестораны -->
-    <div class="section" id="food">
-        <div class="section-header">
-            <span>Гастрономия & Традиции</span>
-            <h2>Популярные блюда Мальдив</h2>
-        </div>
-
-        <div class="food-grid">
-            <div class="food-card">
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600" alt="Мас Хуни">
-                <div class="food-card-body">
-                    <h3>Мас Хуни (Mas Huni)</h3>
-                    <p>Традиционный мальдивский завтрак из свежего тунца, кокоса, лука и перца чили, подается с горячими лепешками роши.</p>
-                </div>
-            </div>
-            <div class="food-card">
-                <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?w=600" alt="Гарудия">
-                <div class="food-card-body">
-                    <h3>Гарудия (Garudhiya)</h3>
-                    <p>Насыщенный и ароматный прозрачный уха-суп из свежевыловленного тунца с добавлением лайма, чили и риса.</p>
-                </div>
-            </div>
-            <div class="food-card">
-                <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600" alt="Рыбный карри">
-                <div class="food-card-body">
-                    <h3>Мальдивский Карри</h3>
-                    <p>Нежный карри из тунца или морепродуктов, приготовленный на свежем кокосовом молоке со специями.</p>
-                </div>
-            </div>
-            <div class="food-card">
-                <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=600" alt="Лобстер">
-                <div class="food-card-body">
-                    <h3>Лобстер на гриле</h3>
-                    <p>Свежайшие королевские лобстеры, приготовленные на открытом огне с соусом из чесночного масла и лайма.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-header" style="margin-top: 80px;">
-            <span>Уникальный опыт</span>
-            <h2>Знаменитые 4 Ресторана</h2>
-        </div>
-
-        <div class="restaurants-grid">
-            <div class="rest-card">
-                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800" alt="Ithaa Undersea">
-                <div class="rest-content">
-                    <span>1. Conrad Maldives</span>
-                    <h3>Ithaa Undersea Restaurant</h3>
-                    <p style="color:#aaa; font-size:13px;">Первый в мире полностью стеклянный подводный ресторан на глубине 5 метров.</p>
-                </div>
-            </div>
-
-            <div class="rest-card">
-                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800" alt="Subsix">
-                <div class="rest-content">
-                    <span>2. Niyama Private Islands</span>
-                    <h3>Subsix Underwater Club</h3>
-                    <p style="color:#aaa; font-size:13px;">Подводный ресторан-клуб с интерьером в виде морских ежей и анемонов.</p>
-                </div>
-            </div>
-
-            <div class="rest-card">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800" alt="5.8 Undersea">
-                <div class="rest-content">
-                    <span>3. Hurawalhi Island Resort</span>
-                    <h3>5.8 Undersea Restaurant</h3>
-                    <p style="color:#aaa; font-size:13px;">Крупнейший в мире полностью стеклянный подводный ресторан с панорамным видом.</p>
-                </div>
-            </div>
-
-            <div class="rest-card">
-                <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?w=800" alt="SEA Restaurant">
-                <div class="rest-content">
-                    <span>4. Anantara Kihavah</span>
-                    <h3>SEA Restaurant & Cellar</h3>
-                    <p style="color:#aaa; font-size:13px;">Подводный ресторан с первым в мире подводным винным погребом.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Вкладка: Популярные Отели -->
-    <div class="section" id="hotels">
-        <div class="section-header">
-            <span>Роскошь и Комфорт</span>
-            <h2>Популярные Отели & Резорт-Острова</h2>
-        </div>
-
-        <div class="resort-cards">
-            <div class="resort-card">
-                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800" class="resort-img" alt="Soneva Jani">
-                <div class="resort-body">
-                    <span class="resort-tag">Премиум Люкс</span>
-                    <h3>Soneva Jani</h3>
-                    <p style="font-size:14px; margin-top:8px;">Знаменитые водные виллы с раздвижными крышами для наблюдения за звездами и горками в океан.</p>
-                    <div class="resort-price">
-                        <span class="price-val">от $1,200 / ночь</span>
-                    </div>0
-                </div>
-            </div>
-
-            <div class="resort-card">
-                <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=800" class="resort-img" alt="Maafushi">
-                <div class="resort-body">
-                    <span class="resort-tag">Доступный отдых</span>
-                    <h3>Остров Маафуши (Arena Beach)</h3>
-                    <p style="font-size:14px; margin-top:8px;">Лучшее место для бюджетного отдыха, экскурсий к акулам и знакомства с локальной культурой.</p>
-                    <div class="resort-price">
-                        <span class="price-val">от $120 / ночь</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="resort-card">
-                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800" class="resort-img" alt="Hard Rock">
-                <div class="resort-body">
-                    <span class="resort-tag">Семейный & Развлечения</span>
-                    <h3>Hard Rock Hotel Maldives</h3>
-                    <p style="font-size:14px; margin-top:8px;">Яркий отель с живой музыкой, большими бассейнами и доступом к променаду CROSSROADS.</p>
-                    <div class="resort-price">
-                        <span class="price-val">от $650 / ночь</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Вкладка: Куда еще поехать -->
-    <div class="section" id="destinations">
-        <div class="section-header">
-            <span>Маршруты и Приключения</span>
-            <h2>Куда еще съездить и что посмотреть</h2>
-        </div>
-
-        <div class="travel-grid">
-            <div class="travel-card">
-                <i class="fa-solid fa-city"></i>
-                <h3>Столица Мале</h3>
-                <p>Посетите старейшую Пятничную мечеть (Hukuru Miskiy), местный рыбный рынок и Национальный музей, чтобы узнать историю острова.</p>
-            </div>
-
-            <div class="travel-card">
-                <i class="fa-solid fa-fish"></i>
-                <h3>Заповедник Hanifaru Bay</h3>
-                <p>Уникальное место ЮНЕСКО на Атолле Баа, где сотни гигантских скатов-мант и китовых акул собираются для кормления.</p>
-            </div>
-
-            <div class="travel-card">
-                <i class="fa-solid fa-anchor"></i>
-                <h3>Песчаные Отмели (Sandbanks)</h3>
-                <p>Отправьтесь на катере на необитаемую песчаную косу посреди океана для пикника и проведения фотосессий.</p>
-            </div>
-
-            <div class="travel-card">
-                <i class="fa-solid fa-ship"></i>
-                <h3>Дайв-сафари на Яхте</h3>
-                <p>Забронируйте 7-дневное путешествие на яхте (Liveaboard), чтобы каждый день просыпаться у нового атолла и погружаться с дайверами.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Подвал -->
     <footer>
-        <p>© 2026 Visit Maldives Official Portal .</p>
+        <p>&copy; 2026 Visit Maldives. Все права защищены.</p>
     </footer>
 
-    <!-- Фильтр воды -->
-    <svg style="display: none;">
-        <defs>
-            <filter id="waterFilter">
-                <feTurbulence id="turb" type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" />
-                <feDisplacementMap in="SourceGraphic" in2="noise" scale="40" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-        </defs>
-    </svg>
-
-    <script>
-        // Часы
-        function updateTime() {
-            const options = { timeZone: 'Indian/Maldives', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            document.getElementById('maldivesTime').textContent = new Date().toLocaleTimeString('ru-RU', options);
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        // Преломление воды под мышкой
-        const waterLayer = document.getElementById('waterLayer');
-        const turb = document.getElementById('turb');
-        let frame = 0;
-
-        function animateWater() {
-            frame += 0.01;
-            turb.setAttribute('baseFrequency', `${0.02 + Math.sin(frame) * 0.005}`);
-            requestAnimationFrame(animateWater);
-        }
-        animateWater();
-
-        document.addEventListener('mousemove', (e) => {
-            if (e.clientY < window.innerHeight) {
-                waterLayer.style.clipPath = `circle(130px at ${e.clientX}px ${e.clientY}px)`;
-            } else {
-                waterLayer.style.clipPath = `circle(0px at 0px 0px)`;
-            }
-        });
-
-        // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ (Dark / Light Mode)
-        const themeBtn = document.getElementById('themeToggle');
-
-        themeBtn.addEventListener('click', () => {
-            document.body.classList.toggle('light-theme');
-            
-            if (document.body.classList.contains('light-theme')) {
-                themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i> Светлая';
-            } else {
-                themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i> Тёмная';
-            }
-        });
-    </script>
 </body>
 </html>
